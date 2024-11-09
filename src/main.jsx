@@ -1,20 +1,35 @@
-// Import React and ReactDOM
-import React from "react";
-import ReactDOM from "react-dom/client"; // For React 18+
-import "./index.css"; // Global styles (optional, can be customized)
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
 
-// Import your main App component
-import App from "./App";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom'
+import { About, Articles, Home } from './pages/index.js'
+import App from './App.jsx'
 
-// Create the root element using ReactDOM.createRoot (for React 18+)
-const rootElement = document.getElementById("root");
+const router = createBrowserRouter([
+ { path: '/',
+  element: <App />,
+  children: [
+    {
+      path: '/',
+      element: <Home />,
+    },
+    {
+      path: '/about',
+      element: <About />,
+    },
+    {
+      path: '/articles',
+      element: <Articles />,
+    },
+  ],}
+])
 
-if (rootElement) {
-  const root = ReactDOM.createRoot(rootElement); // Create root for React 18
-  root.render(
-    <React.StrictMode>
-      {/* Wrap the app with StrictMode to help with identifying potential problems in the app */}
-      <App />
-    </React.StrictMode>
-  );
-}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
+)

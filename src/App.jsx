@@ -1,11 +1,17 @@
-import React from "react";
+import React from 'react'
+import { Footer, Header } from './pages'
+import { Outlet } from 'react-router-dom'
 
-function App() {
+const App = () => {
   return (
-    <>
-      Nikesh pandey
-    </>
-  );
+    <section>
+       <Header />
+       <main className='min-h-screen'>
+          <Outlet />
+       </main>
+       <Footer/>
+    </section>
+  )
 }
 
-export default App;
+export default App
